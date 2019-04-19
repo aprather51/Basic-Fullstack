@@ -1,15 +1,15 @@
 const express = require('express');
-// const bodyParser = require('body-parser');
-// const multer = require('multer');
-// const path = require('path');
+const bodyParser = require('body-parser');
+const multer = require('multer');
+const path = require('path');
 
 //initate server
 const server = express();
 const port = process.env.PORT || 5000;
 
 //body-parser
-// server.use(bodyParser.urlencoded({ extended: true }));
-// server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: true }));
+server.use(bodyParser.json());
 
 server.get('/users', (req, res) => {
 	// res.send('Hello');
