@@ -49,16 +49,16 @@ Client side using aysnc/await method will request/fetch for data from backend.
 ```
 then render list of users into browser.
 ```js
-	render() {
-		const users = this.state.users;
+render() {
+	const users = this.state.users;
 		return (
-    <div>
-      {users.map(user => (
-        <div className="item" key={user.id}>
-          {user.firstname} {user.lastname}
-        </div>
-      ))}
-    </div>	
+		    <div>
+		      {users.map(user => (
+			<div className="item" key={user.id}>
+			  {user.firstname} {user.lastname}
+			</div>
+		      ))}
+		    </div>	
 		);
 	}
 ```
