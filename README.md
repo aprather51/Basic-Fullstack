@@ -1,37 +1,66 @@
-# Basic Fullstack Setup
-A basic fullstack setup with client (front-end) and server (back-end) side. establish proxy communication request/fetch data from back-end and render into front-end. 
+# Basic Fullstack 
+A simple and basic fullstack setup to establish communication proxy between client and server.
 
-![screenshot](screenshot.jpg)
+![screenshot](Screenshot.png)
 
-# Usage
+## Usage
+- React (Create-React-App)
+- NodeJS/Express
+- Sass/Scss
 
-## installation
+## Installation
 
 Install server-side dependencies.
-```
+```sh
 yarn install
 ```
 
 To install client-side dependencies.
-```
+```sh
 yarn install-client
 ```
 
-## Serve
+## How does it work?
 
-Run on client-side only.
+Backend server generate _"little"_ data storage with list of users. 
+```js
+server.get('/users', (req, res) => {
+	const users = [
+		{ id: 1, firstname: 'John', lastname: 'Doe' },
+		{ id: 2, firstname: 'Jane', lastname: 'Doe' },
+		{ id: 3, firstname: 'Jack', lastname: 'Doe' },
+		{ id: 4, firstname: 'Jill', lastname: 'Doe' }
+	];
+
+	res.json(users);
+});
 
 ```
-yarn client
+
+Client side using aysnc/await method will request/fetch for data from backend.
+
+```js
+	async componentDidMount() {
+		const res = await fetch('/users');
+		const users = await res.json();
+		this.setState({ users }, () => console.log('users fetched -->', users));
+	}
+
+```
+then render list of users into browser.
+```js
+	render() {
+		const users = this.state.users;
+		return (
+    <div>
+      {users.map(user => (
+        <div className="item" key={user.id}>
+          {user.firstname} {user.lastname}
+        </div>
+      ))}
+    </div>	
+		);
+	}
 ```
 
-Run on server-side only.
-```
-yarn server
-```
-
-Run server & client side concurrently.
-```
-yarn start
-```
 
